@@ -37,8 +37,9 @@ button {
   border: 1px solid;
   border-radius: 3px;
   padding: 10px 14px;
-  font-size: 15px;
+  font-size: 14px;
   cursor: pointer;
+  text-transform: uppercase;
 }
 
 button.blue {
@@ -100,4 +101,10 @@ header button:first-child {
   top: 16px;
   right: 16px;
   cursor: pointer;
+}
+
+.cancel-btn {
+  background: #fff;
+  color: #111113;
+  border: 1px solid rgb(219, 217, 217);
 }

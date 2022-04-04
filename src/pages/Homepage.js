@@ -45,7 +45,7 @@ const Homepage = () => {
     const result = await response.json();
 
     if (result.success) {
-      getProducts();
+      await getProducts();
     }
   };
 
@@ -68,7 +68,7 @@ const Homepage = () => {
         <Button
           type='button'
           onClick={() => navigate('/add-product')}
-          buttonText='Add new product'
+          buttonText='Add'
           cssStyle='blue'
         />
         <Button
@@ -76,6 +76,7 @@ const Homepage = () => {
           onClick={massDelete}
           buttonText='Mass Delete'
           cssStyle='red'
+          buttonId='delete-product-btn'
         />
       </Header>
       <p>Selected: {ids.length}</p>
