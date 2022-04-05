@@ -32,6 +32,7 @@ header {
   margin: 0 auto;
 }
 
+
 button {
   box-shadow: none;
   border: 1px solid;
@@ -39,7 +40,6 @@ button {
   padding: 10px 14px;
   font-size: 14px;
   cursor: pointer;
-  text-transform: uppercase;
 }
 
 button.blue {
@@ -107,4 +107,40 @@ header button:first-child {
   background: #fff;
   color: #111113;
   border: 1px solid rgb(219, 217, 217);
+}
+
+label {
+  display: block;
+  padding-bottom: 4px;
+}
+
+#product_form input,
+#product_form select {
+  padding: 12px 6px;
+  box-shadow: none;
+  border: 1px solid rgb(175, 174, 174);
+  border-radius: 3px;
+  min-width: 300px;
+  box-sizing: border-box;
+}
+
+#product_form input:focus,
+#product_form select:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group .input-help-text {
+  font-size: 15px;
+  margin-top: 12px;
+}
+
+.text-danger {
+  font-size: 14px;
+  color: #f93154;
+  padding-top: 4px;
 }

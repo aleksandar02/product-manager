@@ -10,7 +10,7 @@ import ProductItem from '../components/ProductItem';
 const Homepage = () => {
   const navigate = useNavigate();
 
-  const [ids, setProductIds] = useState([]);
+  const [selectedIds, setSelectedIds] = useState([]);
   const [products, setProducts] = useState([]);
 
   const getProducts = async () => {
@@ -29,36 +29,47 @@ const Homepage = () => {
   }, []);
 
   const massDelete = async () => {
-    const url = 'http://localhost/product-api/src/api/massDelete.php';
+    if (selectedIds.length > 0) {
+      try {
+        const url = 'http://localhost/product-api/src/api/massDelete.php';
 
-    const productIds = { ids: [...ids] };
+        const productIds = { ids: [...selectedIds] };
 
-    const response = await fetch(url, {
-      method: 'DELETE',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(productIds),
-    });
+        const response = await fetch(url, {
+          method: 'DELETE',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(productIds),
+        });
 
-    const result = await response.json();
+        const result = await response.json();
 
-    if (result.success) {
-      await getProducts();
+        if (result.success) {
+          await getProducts();
+          setSelectedIds([]);
+        }
+      } catch (err) {
+        console.log('Something went wrong!');
+      }
+    } else {
+      console.log('No products selected!');
     }
   };
 
   const handleOnChange = (id) => {
-    const exists = ids.find((productId) => productId == id);
+    const exists = selectedIds.find((productId) => productId == id);
 
     if (exists) {
-      const filteredProductIds = ids.filter((productId) => productId != id);
+      const filteredProductIds = selectedIds.filter(
+        (productId) => productId != id
+      );
 
-      setProductIds([...filteredProductIds]);
+      setSelectedIds([...filteredProductIds]);
     } else {
-      console.log([...ids, id]);
-      setProductIds((currentState) => [...currentState, id]);
+      console.log([...selectedIds, id]);
+      setSelectedIds((currentState) => [...currentState, id]);
     }
   };
 
@@ -68,18 +79,18 @@ const Homepage = () => {
         <Button
           type='button'
           onClick={() => navigate('/add-product')}
-          buttonText='Add'
+          buttonText='ADD'
           cssStyle='blue'
         />
         <Button
           type='button'
           onClick={massDelete}
-          buttonText='Mass Delete'
+          buttonText='MASS DELETE'
           cssStyle='red'
           buttonId='delete-product-btn'
         />
       </Header>
-      <p>Selected: {ids.length}</p>
+      <p>Selected: {selectedIds.length}</p>
       <Products>
         {products.map((product) => (
           <ProductItem
