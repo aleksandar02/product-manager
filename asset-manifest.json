@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/product-manager/static/css/main.176c3de5.css",
+    "main.js": "/product-manager/static/js/main.7165777f.js",
+    "index.html": "/product-manager/index.html",
+    "main.176c3de5.css.map": "/product-manager/static/css/main.176c3de5.css.map",
+    "main.7165777f.js.map": "/product-manager/static/js/main.7165777f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.176c3de5.css",
+    "static/js/main.7165777f.js"
+  ]
+}
