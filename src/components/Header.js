@@ -1,8 +1,10 @@
 const Header = ({ headlineText, children }) => {
   return (
     <header>
-      <h1>{headlineText}</h1>
-      <div className='header-actions'>{children}</div>
+      <div className='header-content container'>
+        <h1>{headlineText}</h1>
+        <div className='header-actions'>{children}</div>
+      </div>
     </header>
   );
 };

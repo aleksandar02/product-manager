@@ -5,6 +5,7 @@ body {
   padding: 0;
   font-family: 'Mulish', sans-serif;
   box-sizing: border-box;
+  background: #f6f6f6;
 }
 
 h1,
@@ -18,13 +19,21 @@ h6 {
 
 header {
   width: 100%;
-  padding: 24px 0px;
+  padding: 12px 24px;
+  box-sizing: border-box;
+  margin-bottom: 32px;
+  background: #fff;
+  box-shadow: 0 10px 10px 0 rgba(0,0,0,.02);
+}
+
+.header-content {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-sizing: border-box;
-  border-bottom: 1px solid rgb(230, 228, 228);
-  margin-bottom: 20px;
+}
+
+header h1 {
+  font-size: 24px;
 }
 
 .container {
@@ -62,16 +71,22 @@ header button:first-child {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-gap: 10px;
+  grid-gap: 14px;
   box-sizing: border-box;
 }
 
 .product-item {
   position: relative;
+  background: #fff;
   padding: 20px 18px;
   box-sizing: border-box;
-  border: 1px solid rgb(219, 217, 217);
-  border-radius: 4px;
+  border-radius: 8px;
+  box-shadow: 0 15px 20px 0 rgba(0,0,0,.02);
+  transition: all ease 350ms;
+}
+
+.product-item:hover {
+  box-shadow: 0 15px 20px 0 rgba(0,0,0,.06);
 }
 
 .product-item span {
@@ -106,7 +121,7 @@ header button:first-child {
 .cancel-btn {
   background: #fff;
   color: #111113;
-  border: 1px solid rgb(219, 217, 217);
+  border: 1px solid rgb(201, 199, 199);
 }
 
 label {
@@ -118,10 +133,12 @@ label {
 #product_form select {
   padding: 12px 6px;
   box-shadow: none;
-  border: 1px solid rgb(175, 174, 174);
+  border: 1px solid rgb(201, 199, 199);
   border-radius: 3px;
-  min-width: 300px;
+  min-width: 350px;
   box-sizing: border-box;
+  background: #f8f8f8;
+
 }
 
 #product_form input:focus,
@@ -144,3 +161,26 @@ label {
   color: #f93154;
   padding-top: 4px;
 }
+
+.form-title {
+  font-weight: 700;
+}
+
+.form-subtitle {
+  margin: 8px 0 24px 0;
+}
+
+@media (max-width: 1400px) {
+  .container {
+    width: 1200px;
+  }
+}
+
+
+@media (max-width: 1200px) {
+  .container {
+    width: 80%;
+  }
+}
+
+

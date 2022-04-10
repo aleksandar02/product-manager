@@ -8,7 +8,8 @@ const AddProductPage = () => {
   const navigate = useNavigate();
 
   const save = async (product) => {
-    const url = 'http://localhost/product-api/src/api/create.php';
+    const url =
+      'https://product-api-solution.000webhostapp.com/productapi/api/create.php';
 
     const response = await fetch(url, {
       method: 'POST',
@@ -29,7 +30,7 @@ const AddProductPage = () => {
   };
 
   return (
-    <div className='container'>
+    <div>
       <Header headlineText='Add Product'>
         <Button
           type='submit'
@@ -44,7 +45,13 @@ const AddProductPage = () => {
           cssStyle='cancel-btn'
         />
       </Header>
-      <AddProductForm saveProduct={save} />
+      <div className='container'>
+        <h1 className='form-title'>Add product form</h1>
+        <p className='form-subtitle'>
+          Fill in all the neccessary fields to add the new product.
+        </p>
+        <AddProductForm saveProduct={save} />
+      </div>
     </div>
   );
 };

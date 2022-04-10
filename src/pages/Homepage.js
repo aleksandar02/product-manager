@@ -15,7 +15,9 @@ const Homepage = () => {
 
   const getProducts = async () => {
     try {
-      const data = await fetch('http://localhost/product-api/src/api/read.php');
+      const data = await fetch(
+        'https://product-api-solution.000webhostapp.com/productapi/api/read.php'
+      );
       const json = await data.json();
 
       setProducts([...json]);
@@ -31,12 +33,13 @@ const Homepage = () => {
   const massDelete = async () => {
     if (selectedIds.length > 0) {
       try {
-        const url = 'http://localhost/product-api/src/api/massDelete.php';
+        const url =
+          'https://product-api-solution.000webhostapp.com/productapi/api/massDelete.php';
 
         const productIds = { ids: [...selectedIds] };
 
         const response = await fetch(url, {
-          method: 'DELETE',
+          method: 'POST',
           headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
@@ -73,8 +76,12 @@ const Homepage = () => {
     }
   };
 
+  const filteredProducts = products.sort((a, b) => {
+    return b.id - a.id;
+  });
+
   return (
-    <div className='container'>
+    <div>
       <Header headlineText='Product List'>
         <Button
           type='button'
@@ -90,16 +97,18 @@ const Homepage = () => {
           buttonId='delete-product-btn'
         />
       </Header>
-      <p>Selected: {selectedIds.length}</p>
-      <Products>
-        {products.map((product) => (
-          <ProductItem
-            key={product.id}
-            product={product}
-            handleOnChange={handleOnChange}
-          />
-        ))}
-      </Products>
+      <div className='container'>
+        <p>Selected: {selectedIds.length}</p>
+        <Products>
+          {filteredProducts.map((product) => (
+            <ProductItem
+              key={product.id}
+              product={product}
+              handleOnChange={handleOnChange}
+            />
+          ))}
+        </Products>
+      </div>
     </div>
   );
 };
