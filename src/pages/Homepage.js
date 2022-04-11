@@ -10,7 +10,6 @@ import ProductItem from '../components/ProductItem';
 const Homepage = () => {
   const navigate = useNavigate();
 
-  const [selectedIds, setSelectedIds] = useState([]);
   const [products, setProducts] = useState([]);
 
   const getProducts = async () => {
@@ -31,6 +30,13 @@ const Homepage = () => {
   }, []);
 
   const massDelete = async () => {
+    const checkboxes = document.querySelectorAll('.delete-checkbox');
+    let selectedIds = [];
+
+    checkboxes.forEach((c) => {
+      selectedIds = [...selectedIds, c.getAttribute('data-product-id')];
+    });
+
     if (selectedIds.length > 0) {
       try {
         const url =
@@ -50,28 +56,17 @@ const Homepage = () => {
         const result = await response.json();
 
         if (result.success) {
-          await getProducts();
-          setSelectedIds([]);
+          let filteredProducts = products.filter(
+            (p) => !selectedIds.includes(p.id)
+          );
+
+          setProducts(filteredProducts);
         }
       } catch (err) {
         console.log('Something went wrong!');
       }
     } else {
       console.log('No products selected!');
-    }
-  };
-
-  const handleOnChange = (id) => {
-    const exists = selectedIds.find((productId) => productId == id);
-
-    if (exists) {
-      const filteredProductIds = selectedIds.filter(
-        (productId) => productId != id
-      );
-
-      setSelectedIds([...filteredProductIds]);
-    } else {
-      setSelectedIds((currentState) => [...currentState, id]);
     }
   };
 
@@ -97,15 +92,15 @@ const Homepage = () => {
         />
       </Header>
       <div className='container'>
-        <Products>
-          {filteredProducts.map((product) => (
-            <ProductItem
-              key={product.id}
-              product={product}
-              handleOnChange={handleOnChange}
-            />
-          ))}
-        </Products>
+        {filteredProducts.length > 0 ? (
+          <Products>
+            {filteredProducts.map((product) => (
+              <ProductItem key={product.id} product={product} />
+            ))}
+          </Products>
+        ) : (
+          <p>There are no products to show!</p>
+        )}
       </div>
     </div>
   );

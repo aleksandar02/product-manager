@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ProductItem = ({ product, handleOnChange }) => {
+const ProductItem = ({ product }) => {
   let displayAttribute = <p>Weight: {product.weight}KG</p>;
 
   if (product.type == 2) {
@@ -22,8 +22,8 @@ const ProductItem = ({ product, handleOnChange }) => {
 
       <input
         type='checkbox'
+        data-product-id={product.id}
         className='delete-checkbox'
-        onChange={() => handleOnChange(product.id)}
       />
     </div>
   );
