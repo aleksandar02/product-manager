@@ -71,7 +71,6 @@ const Homepage = () => {
 
       setSelectedIds([...filteredProductIds]);
     } else {
-      console.log([...selectedIds, id]);
       setSelectedIds((currentState) => [...currentState, id]);
     }
   };
@@ -98,7 +97,6 @@ const Homepage = () => {
         />
       </Header>
       <div className='container'>
-        <p>Selected: {selectedIds.length}</p>
         <Products>
           {filteredProducts.map((product) => (
             <ProductItem

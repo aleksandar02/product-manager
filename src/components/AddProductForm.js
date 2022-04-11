@@ -21,8 +21,8 @@ const initialValues = {
 const validationSchema = Yup.object().shape(
   {
     sku: Yup.string()
-      .min(4, 'Too Short *')
-      .max(50, 'Too Long *')
+      .min(8, 'Too Short *')
+      .max(12, 'Too Long *')
       .required('Please submit required data.')
       .test('no-whitespaces', 'SKU must not have whitespaces.', (value) =>
         value?.trim().match(/^\S+$/)

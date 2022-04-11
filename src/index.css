@@ -52,15 +52,15 @@ button {
 }
 
 button.blue {
-  background: #1266f1;
+  background: #3b82f6;
   color: #fff;
-  border-color: #1266f1;
+  border-color: #3b82f6;
 }
 
 button.red {
-  background: #f93154;
+  background: #ef4444;
   color: #fff;
-  border-color: #f93154;
+  border-color: #ef4444;
 }
 
 header button:first-child {
@@ -183,4 +183,37 @@ label {
   }
 }
 
+@media (max-width: 576px) {
+  .container {
+    width: 90%;
+  }
+
+  header {
+    padding: 6px 10px;
+    margin-bottom: 24px;
+  }
+
+  header h1 {
+    font-size: 20px;
+  }
+
+  header button:first-child {
+    margin-right: 8px;
+  }
+
+  button {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .form-title {
+    font-size: 28px;
+  }
+  
+  .form-subtitle {
+    margin: 6px 0 24px 0;
+    font-size: 15px;
+    line-height: 20px;
+  }
+}
 
