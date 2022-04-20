@@ -8,8 +8,7 @@ const AddProductPage = () => {
   const navigate = useNavigate();
 
   const save = async (product) => {
-    const url =
-      'https://product-api-solution.000webhostapp.com/productapi/api/create.php';
+    const url = 'http://localhost/product-api/src/api/create.php';
 
     const response = await fetch(url, {
       method: 'POST',

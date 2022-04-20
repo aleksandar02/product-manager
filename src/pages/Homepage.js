@@ -14,9 +14,7 @@ const Homepage = () => {
 
   const getProducts = async () => {
     try {
-      const data = await fetch(
-        'https://product-api-solution.000webhostapp.com/productapi/api/read.php'
-      );
+      const data = await fetch('http://localhost/product-api/src/api/read.php');
       const json = await data.json();
 
       setProducts([...json]);
@@ -34,13 +32,14 @@ const Homepage = () => {
     let selectedIds = [];
 
     checkboxes.forEach((c) => {
-      selectedIds = [...selectedIds, c.getAttribute('data-product-id')];
+      if (c.checked == true) {
+        selectedIds = [...selectedIds, c.getAttribute('data-product-id')];
+      }
     });
 
     if (selectedIds.length > 0) {
       try {
-        const url =
-          'https://product-api-solution.000webhostapp.com/productapi/api/massDelete.php';
+        const url = 'http://localhost/product-api/src/api/massDelete.php';
 
         const productIds = { ids: [...selectedIds] };
 
@@ -56,9 +55,13 @@ const Homepage = () => {
         const result = await response.json();
 
         if (result.success) {
-          let filteredProducts = products.filter(
-            (p) => !selectedIds.includes(p.id)
-          );
+          let filteredProducts = [];
+
+          products.forEach((product) => {
+            if (!selectedIds.includes(product.id.toString())) {
+              filteredProducts = [...filteredProducts, product];
+            }
+          });
 
           setProducts(filteredProducts);
         }
